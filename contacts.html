@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакты — FV CODE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="bg-fx" id="bgfx"></div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="index.html" class="brand"><span class="brand-mark">FV</span><span class="logo-word">FV CODE</span></a>
+      <div class="navlinks">
+        <a href="about.html">О нас</a>
+        <a href="services.html">Услуги</a>
+        <a href="process.html">Как мы работаем</a>
+        <a href="portfolio.html">Портфолио</a>
+        <a href="reviews.html">Отзывы</a>
+        <a href="history.html">История</a>
+        <a href="team.html">Команда</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+      <a href="https://t.me/FV_CODE" target="_blank" rel="noopener" class="nav-cta">Написать в TG →</a>
+      <button class="burger" id="burger" aria-label="Меню">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mmenu">
+      <a href="about.html">О нас</a>
+      <a href="services.html">Услуги</a>
+      <a href="process.html">Как мы работаем</a>
+      <a href="portfolio.html">Портфолио</a>
+      <a href="reviews.html">Отзывы</a>
+      <a href="history.html">История</a>
+      <a href="team.html">Команда</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="hero-glow"></div>
+    <div class="wrap">
+      <span class="page-tag">Контакты</span>
+      <h1>Свяжитесь с нами</h1>
+      <p>Проще всего написать в Telegram — отвечаем в течение суток.</p>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="wrap contact-grid">
+      <div class="contact-list reveal">
+        <a data-field="contact-channel" href="https://t.me/FV_CODE" target="_blank" rel="noopener" class="c-item">
+          <div class="c-icon">📢</div>
+          <div><h4>Telegram-канал</h4><span data-field="contact-channel-label">t.me/FV_CODE — новости и обновления</span></div>
+        </a>
+        <div id="contact-team"></div>
+        <div class="c-item" style="cursor:default;">
+          <div class="c-icon">⏱️</div>
+          <div><h4>Время ответа</h4><span data-field="contact-response-time">обычно в течение 24 часов</span></div>
+        </div>
+      </div>
+      <div class="form-panel reveal">
+        <h3>Оставить заявку</h3>
+        <p>Заполните форму — мы свяжемся с вами в Telegram или напишем сами.</p>
+        <form id="leadform" onsubmit="return false;">
+          <div class="field"><label>Имя</label><input type="text" placeholder="Как к вам обращаться" required></div>
+          <div class="field"><label>Telegram</label><input type="text" placeholder="@username" required></div>
+          <div class="field"><label>Что нужно сделать</label>
+            <select>
+              <option>Сайт</option>
+              <option>Мобильное приложение</option>
+              <option>Telegram-бот</option>
+              <option>Telegram Mini App</option>
+              <option>Дизайн</option>
+              <option>Другое</option>
+            </select>
+          </div>
+          <div class="field"><label>Коротко о проекте</label><textarea placeholder="Расскажите, что хотите получить"></textarea></div>
+          <button class="form-submit" type="submit">Отправить заявку</button>
+        </form>
+        <p class="form-note">Форма демонстрационная — для быстрой связи пишите в <a href="https://t.me/FV_CODE" target="_blank" style="color:var(--violet-bright);">Telegram-канал</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <p>© <span id="year"></span> FV CODE. Все права защищены.</p>
+    <div class="foot-links">
+      <a href="https://t.me/FV_CODE" target="_blank" rel="noopener">Telegram-канал</a>
+      <a href="admin.html" style="opacity:.45;">Админ-панель</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+  // render team as direct-contact cards on this page (separate from the shared renderTeam target)
+  fetch('data.json?_=' + Date.now()).then(r => r.json()).then(data => {
+    const box = document.getElementById('contact-team');
+    if (!box || !Array.isArray(data.team)) return;
+    box.innerHTML = data.team.map(t => `
+      <a href="${t.telegram || '#'}" target="_blank" rel="noopener" class="c-item">
+        <div class="c-icon">👤</div>
+        <div><h4>${t.name} — ${t.role}</h4><span>${(t.telegram || '').replace('https://t.me/', '@')}</span></div>
+      </a>
+    `).join('');
+  }).catch(() => {});
+</script>
+</body>
+</html>

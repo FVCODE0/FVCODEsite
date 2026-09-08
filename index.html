@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FV CODE — сайты, приложения, боты и дизайн</title>
+<meta name="description" content="FV CODE — digital-агентство. Делаем сайты, мобильные приложения, Telegram-ботов, Telegram Mini Apps и дизайн любой сложности.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="bg-fx" id="bgfx"></div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="index.html" class="brand"><span class="brand-mark">FV</span><span class="logo-word">FV CODE</span></a>
+      <div class="navlinks">
+        <a href="about.html">О нас</a>
+        <a href="services.html">Услуги</a>
+        <a href="process.html">Как мы работаем</a>
+        <a href="portfolio.html">Портфолио</a>
+        <a href="reviews.html">Отзывы</a>
+        <a href="history.html">История</a>
+        <a href="team.html">Команда</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+      <a href="https://t.me/FV_CODE" target="_blank" rel="noopener" class="nav-cta">Написать в TG →</a>
+      <button class="burger" id="burger" aria-label="Меню">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mmenu">
+      <a href="about.html">О нас</a>
+      <a href="services.html">Услуги</a>
+      <a href="process.html">Как мы работаем</a>
+      <a href="portfolio.html">Портфолио</a>
+      <a href="reviews.html">Отзывы</a>
+      <a href="history.html">История</a>
+      <a href="team.html">Команда</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-ring"></div>
+    <div class="hero-glow"></div>
+    <div class="wrap hero-inner">
+      <span class="hero-eyebrow"><span class="dot-live"></span> <span data-field="hero-eyebrow">Берём проекты в разработку</span></span>
+      <h1><span data-field="hero-title">Разрабатываем сайты, приложения и ботов, которые реально работают</span></h1>
+      <p data-field="hero-text">FV CODE — команда, которая доводит цифровые продукты от идеи до релиза.</p>
+      <div class="hero-actions">
+        <a href="https://t.me/FV_CODE" target="_blank" rel="noopener" class="btn btn-primary">Обсудить проект</a>
+        <a href="portfolio.html" class="btn btn-ghost">Смотреть работы</a>
+      </div>
+      <div class="hero-stats" data-field="hero-stats"></div>
+    </div>
+  </section>
+
+  <section id="overview">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">Коротко об агентстве</span>
+        <h2>Всё, что нужно, чтобы запустить продукт</h2>
+        <p>Ниже — основные разделы сайта. На каждой странице подробности: услуги, процесс, портфолио, отзывы, история и команда.</p>
+      </div>
+      <div class="teaser-grid">
+        <div class="teaser-card reveal">
+          <h3>О нас</h3>
+          <p>Кто мы, как устроена команда и почему держим её компактной.</p>
+          <a class="teaser-link" href="about.html">Читать →</a>
+        </div>
+        <div class="teaser-card reveal">
+          <h3>Услуги</h3>
+          <p>Сайты, приложения, Telegram-боты, Mini Apps, дизайн и поддержка.</p>
+          <a class="teaser-link" href="services.html">Смотреть услуги →</a>
+        </div>
+        <div class="teaser-card reveal">
+          <h3>Как мы работаем</h3>
+          <p>Процесс из шести этапов — от брифа до поддержки после запуска.</p>
+          <a class="teaser-link" href="process.html">Смотреть процесс →</a>
+        </div>
+        <div class="teaser-card reveal">
+          <h3>Портфолио</h3>
+          <p>Примеры направлений и проектов, с которыми мы работаем.</p>
+          <a class="teaser-link" href="portfolio.html">Смотреть работы →</a>
+        </div>
+        <div class="teaser-card reveal">
+          <h3>Команда</h3>
+          <p>Основатели и участники, которые ведут ваш проект.</p>
+          <a class="teaser-link" href="team.html">Познакомиться →</a>
+        </div>
+        <div class="teaser-card reveal">
+          <h3>Контакты</h3>
+          <p>Telegram-канал и прямая связь с основателями агентства.</p>
+          <a class="teaser-link" href="contacts.html">Написать →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio-preview">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">Портфолио</span>
+        <h2>Последние направления в работе</h2>
+        <p>Полный список — на странице портфолио.</p>
+      </div>
+      <div class="pf-grid" data-field="portfolio" data-limit="3"></div>
+    </div>
+  </section>
+
+  <section id="reviews-preview">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">Отзывы</span>
+        <h2>Что говорят клиенты</h2>
+      </div>
+      <div class="rv-grid" data-field="reviews" data-limit="3"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <p>© <span id="year"></span> FV CODE. Все права защищены.</p>
+    <div class="foot-links">
+      <a href="https://t.me/FV_CODE" target="_blank" rel="noopener">Telegram-канал</a>
+      <a href="admin.html" style="opacity:.45;">Админ-панель</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

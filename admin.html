@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Админ-панель — FV CODE</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/admin.css">
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="wrap">
+    <div class="admin-title"><span class="brand-mark">FV</span> Админ-панель</div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="admin-status" id="connStatus">не подключено</span>
+      <a href="index.html" class="btn btn-ghost btn-sm">← На сайт</a>
+    </div>
+  </div>
+</header>
+
+<div class="admin-wrap">
+
+  <p class="admin-intro">
+    Здесь редактируется весь контент сайта: главный экран, услуги, процесс, портфолио, отзывы, история, команда (включая фото) и контакты.
+    Изменения сохраняются напрямую в файл <code>data.json</code> в вашем GitHub-репозитории — сайт на GitHub Pages подхватит их автоматически через 1–2 минуты после сохранения.
+  </p>
+
+  <!-- CONNECTION -->
+  <div class="connect-card" id="connectCard">
+    <h2>Подключение к GitHub</h2>
+    <p class="hint" style="margin-bottom:16px;">
+      Нужен Personal Access Token с правом записи в репозиторий (classic-токен со скоупом <code>repo</code>, или fine-grained с доступом Contents: Read and write).
+      Токен создаётся на странице <a href="https://github.com/settings/tokens" target="_blank" rel="noopener" style="color:var(--violet-bright);">github.com/settings/tokens</a> и хранится только в вашем браузере — никуда, кроме GitHub API, не отправляется.
+    </p>
+    <div class="connect-grid">
+      <div class="field"><label>Владелец репозитория (username / организация)</label><input type="text" id="cfgOwner" placeholder="например TrumpSCH"></div>
+      <div class="field"><label>Название репозитория</label><input type="text" id="cfgRepo" placeholder="например fvcode-site"></div>
+      <div class="field"><label>Ветка</label><input type="text" id="cfgBranch" placeholder="main" value="main"></div>
+      <div class="field"><label>Personal Access Token</label><input type="password" id="cfgToken" placeholder="ghp_..."></div>
+      <div class="field full" style="display:flex;gap:10px;">
+        <button class="btn btn-primary btn-sm" id="btnConnect">Подключиться и загрузить данные</button>
+        <button class="btn btn-ghost btn-sm" id="btnDisconnect">Забыть токен</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="editorArea" class="hidden">
+
+    <!-- HERO -->
+    <div class="admin-section">
+      <h2>Главный экран</h2>
+      <p class="hint">Заголовок, подзаголовок и цифры в шапке главной страницы.</p>
+      <div class="field"><label>Метка над заголовком</label><input type="text" data-hero="eyebrow"></div>
+      <div class="field"><label>Заголовок</label><input type="text" data-hero="title"></div>
+      <div class="field"><label>Подзаголовок</label><textarea data-hero="text"></textarea></div>
+      <div class="mini-label" style="margin-top:14px;margin-bottom:8px;">Цифры (статистика)</div>
+      <div id="list-heroStats"></div>
+      <button class="btn btn-ghost btn-sm" id="addHeroStat">+ Добавить цифру</button>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="admin-section">
+      <h2>Услуги</h2>
+      <p class="hint">Карточки на странице «Услуги» и в других местах сайта.</p>
+      <div id="list-services"></div>
+      <button class="btn btn-ghost btn-sm" id="addService">+ Добавить услугу</button>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="admin-section">
+      <h2>Как мы работаем</h2>
+      <p class="hint">Шаги процесса — нумеруются автоматически по порядку.</p>
+      <div id="list-process"></div>
+      <button class="btn btn-ghost btn-sm" id="addProcess">+ Добавить шаг</button>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div class="admin-section">
+      <h2>Портфолио</h2>
+      <p class="hint">Технологии указывайте через запятую.</p>
+      <div id="list-portfolio"></div>
+      <button class="btn btn-ghost btn-sm" id="addPortfolio">+ Добавить проект</button>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="admin-section">
+      <h2>Отзывы</h2>
+      <div id="list-reviews"></div>
+      <button class="btn btn-ghost btn-sm" id="addReview">+ Добавить отзыв</button>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="admin-section">
+      <h2>История агентства</h2>
+      <p class="hint">Этапы таймлайна на странице «История».</p>
+      <div id="list-history"></div>
+      <button class="btn btn-ghost btn-sm" id="addHistory">+ Добавить этап</button>
+    </div>
+
+    <!-- TEAM -->
+    <div class="admin-section">
+      <h2>Команда</h2>
+      <p class="hint">Можно загрузить фото сотрудника — оно закоммитится в репозиторий в папку <code>assets/team/</code>.</p>
+      <div id="list-team"></div>
+      <button class="btn btn-ghost btn-sm" id="addTeam">+ Добавить сотрудника</button>
+    </div>
+
+    <!-- CONTACTS -->
+    <div class="admin-section">
+      <h2>Контакты</h2>
+      <div class="field"><label>Ссылка на Telegram-канал</label><input type="text" data-contacts="channel"></div>
+      <div class="field"><label>Подпись рядом со ссылкой на канал</label><input type="text" data-contacts="channel_label"></div>
+      <div class="field"><label>Текст про время ответа</label><input type="text" data-contacts="response_time"></div>
+    </div>
+
+    <!-- RAW JSON -->
+    <div class="admin-section">
+      <h2>JSON целиком (для продвинутых)</h2>
+      <p class="hint">Показывает и позволяет вручную отредактировать весь data.json. Обычно форм выше достаточно.</p>
+      <button class="btn btn-ghost btn-sm" id="toggleJson" style="margin-bottom:12px;">Показать JSON</button>
+      <div class="json-box hidden" id="jsonBox">
+        <textarea id="jsonTextarea" spellcheck="false"></textarea>
+        <div style="display:flex;gap:10px;margin-top:10px;">
+          <button class="btn btn-ghost btn-sm" id="jsonApply">Применить JSON к формам</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="savebar hidden" id="savebar">
+  <div class="wrap">
+    <span class="savebar-msg" id="savebarMsg">Есть несохранённые изменения</span>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-ghost btn-sm" id="btnReload">Перезагрузить с GitHub</button>
+      <button class="btn btn-primary btn-sm" id="btnSave">Сохранить и опубликовать</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/admin.js"></script>
+</body>
+</html>
